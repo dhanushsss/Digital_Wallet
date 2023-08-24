@@ -1,8 +1,21 @@
 package com.example.digital_wallet.holders.model;
 
+import jakarta.persistence.*;
+
 import java.util.Objects;
 
+@Entity
 public class Customer {
+
+    @Id
+    @SequenceGenerator(
+            name = "customer_id_sequence" ,
+            sequenceName = "customer_id_sequence"
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "customer_id_sequence"
+    )
     private Integer customerId;
     private String customerName;
     private String customerEmail;
@@ -15,8 +28,7 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(Integer customerId, String customerName, String customerEmail, String customerPhoneNumber, String customerPassword, String customerAddress, String customerUserName, Long customerCardNo) {
-        this.customerId = customerId;
+    public Customer( String customerName, String customerEmail, String customerPhoneNumber, String customerPassword, String customerAddress, String customerUserName, Long customerCardNo) {
         this.customerName = customerName;
         this.customerEmail = customerEmail;
         this.customerPhoneNumber = customerPhoneNumber;
@@ -26,13 +38,7 @@ public class Customer {
         this.customerCardNo = customerCardNo;
     }
 
-    public Integer getCustomerId() {
-        return customerId;
-    }
 
-    public void setCustomerId(Integer customerId) {
-        this.customerId = customerId;
-    }
 
     public String getCustomerName() {
         return customerName;
@@ -94,12 +100,12 @@ public class Customer {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Customer customer)) return false;
-        return Objects.equals(getCustomerId(), customer.getCustomerId()) && Objects.equals(getCustomerName(), customer.getCustomerName()) && Objects.equals(getCustomerEmail(), customer.getCustomerEmail()) && Objects.equals(getCustomerPhoneNumber(), customer.getCustomerPhoneNumber()) && Objects.equals(getCustomerPassword(), customer.getCustomerPassword()) && Objects.equals(getCustomerAddress(), customer.getCustomerAddress()) && Objects.equals(getCustomerUserName(), customer.getCustomerUserName()) && Objects.equals(getCustomerCardNo(), customer.getCustomerCardNo());
+        return Objects.equals(customerId, customer.customerId) && Objects.equals(getCustomerName(), customer.getCustomerName()) && Objects.equals(getCustomerEmail(), customer.getCustomerEmail()) && Objects.equals(getCustomerPhoneNumber(), customer.getCustomerPhoneNumber()) && Objects.equals(getCustomerPassword(), customer.getCustomerPassword()) && Objects.equals(getCustomerAddress(), customer.getCustomerAddress()) && Objects.equals(getCustomerUserName(), customer.getCustomerUserName()) && Objects.equals(getCustomerCardNo(), customer.getCustomerCardNo());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCustomerId(), getCustomerName(), getCustomerEmail(), getCustomerPhoneNumber(), getCustomerPassword(), getCustomerAddress(), getCustomerUserName(), getCustomerCardNo());
+        return Objects.hash(customerId, getCustomerName(), getCustomerEmail(), getCustomerPhoneNumber(), getCustomerPassword(), getCustomerAddress(), getCustomerUserName(), getCustomerCardNo());
     }
 
     @Override
