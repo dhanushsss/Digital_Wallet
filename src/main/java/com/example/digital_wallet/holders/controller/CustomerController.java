@@ -1,6 +1,5 @@
 package com.example.digital_wallet.holders.controller;
 
-
 import com.example.digital_wallet.holders.model.Customer;
 import com.example.digital_wallet.holders.registration.CustomerRegistration;
 import com.example.digital_wallet.holders.service.CustomerService;
